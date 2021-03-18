@@ -28,7 +28,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 async function run() {
     try {
         core.info('action logic');
@@ -37,7 +36,6 @@ async function run() {
         core.setFailed(error);
     }
 }
-//noinspection JSIgnoredPromiseFromCall
 run();
 
 
