@@ -27,7 +27,7 @@ export function newOctokitInstance(token: string): Octokit {
         throttle: {
             onRateLimit: (retryAfter, options) => {
                 const retryCount = options.request.retryCount
-                const retryLogInfo = `${retryCount === 0 ? '' : ` (retry #$retryCount)`}`
+                const retryLogInfo = retryCount === 0 ? '' : ` (retry #${retryCount})`
                 core.debug(`Request quota exhausted for request ${options.method} ${options.url}${retryLogInfo}`)
 
                 return retryCount <= 4
