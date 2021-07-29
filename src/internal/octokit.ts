@@ -18,7 +18,7 @@ const OctokitWithPlugins = GitHub
     })
 
 
-export type Octokit = OctokitCore & RestEndpointMethods & { paginate: PaginateInterface }
+export type Octokit = RestEndpointMethods & { paginate: PaginateInterface }
 
 export function newOctokitInstance(token: string): Octokit {
     const baseOptions = getOctokitOptions(token)
@@ -45,7 +45,7 @@ export function newOctokitInstance(token: string): Octokit {
         }
     }
 
-    const logOptions: { log?: Octokit['log'] } = {}
+    const logOptions: { log?: OctokitCore['log'] } = {}
     if (process.env.ACTIONS_STEP_DEBUG?.toLowerCase() === 'true') {
         logOptions.log = require('console-log-level')({level: 'trace'})
     }
@@ -57,5 +57,10 @@ export function newOctokitInstance(token: string): Octokit {
         ...logOptions
     }
 
-    return new OctokitWithPlugins(allOptions)
+    const octokit = new OctokitWithPlugins(allOptions)
+    return Object.assign(
+        {},
+        octokit.rest,
+        {paginate: octokit.paginate}
+    )
 }
