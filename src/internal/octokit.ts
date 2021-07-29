@@ -14,6 +14,7 @@ const OctokitWithPlugins = GitHub
     .defaults({
         previews: [
             'baptiste',
+            'mercy',
         ]
     })
 
