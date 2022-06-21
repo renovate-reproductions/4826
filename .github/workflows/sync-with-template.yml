@@ -26,5 +26,6 @@ jobs:
         githubToken: '${{ env.PUSH_BACK_TOKEN }}'
         templateRepository: '${{ secrets.TEMPLATE_REPOSITORY }}'
         ignorePaths: |
+          repository-activity.bumper
           *.lock
           dist/**
