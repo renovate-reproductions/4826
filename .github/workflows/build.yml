@@ -38,9 +38,7 @@ jobs:
           echo "::error::action.yml: .runs.using doesn't start with 'node': '$USING'"
           exit 1
         fi
-        echo ${USING:4}
         echo "::set-output name=result::${USING:4}"
-        exit 1
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
