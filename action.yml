@@ -7,5 +7,5 @@ inputs:
     description: GitHub access token with at least 'public_repo' (use 'repo' scope instead of 'public_repo' for private repositories)
 
 runs:
-  using: 123node12
+  using: node12
   main: 'dist/index.js'
