@@ -38,7 +38,9 @@ jobs:
           echo "::error::action.yml: .runs.using doesn't start with 'node': '$USING'"
           exit 1
         fi
-        echo "::set-output name=result::${USING:4}"
+        VERSION=${USING:4}
+        echo "Action's Node.js version: $VERSION"
+        echo "::set-output name=result::$VERSION"
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -70,7 +72,7 @@ jobs:
 
 
     - name: Validate
-      uses: ./.github/workflows-includes/validate.yml
+      uses: ./.github/workflows/build-validate.yml
 
 
     - name: Push back
