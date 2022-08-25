@@ -30,7 +30,18 @@ jobs:
         fetch-depth: 1
 
 
-    - name: Setup node 16
+    - name: Read action's Node.js version
+      id: readNodeVersion
+      run: |
+        local USING=$( yq .runs.using ./action.yml )
+        if ! [[ "$USING" =~ ^node\d+$ ]]; then
+          echo "::error action.yml: .runs.using doesn't start with 'node': '$USING'"
+          exit 1
+        fi
+        echo ${USING:4}
+        exit 1
+
+    - name: Setup Node.js 16
       uses: actions/setup-node@v3
       with:
         node-version: '16'
