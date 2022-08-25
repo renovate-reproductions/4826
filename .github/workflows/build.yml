@@ -33,24 +33,25 @@ jobs:
     - name: Read action's Node.js version
       id: readNodeVersion
       run: |
-        local USING=$( yq .runs.using ./action.yml )
+        USING=$( yq .runs.using ./action.yml )
         if ! [[ "$USING" =~ ^node\d+$ ]]; then
           echo "::error action.yml: .runs.using doesn't start with 'node': '$USING'"
           exit 1
         fi
         echo ${USING:4}
+        echo "::set-output name=result::${USING:4}"
         exit 1
 
-    - name: Setup Node.js 16
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '${{ steps.readNodeVersion.outputs.result }}'
 
 
     - name: node_modules cache
       uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-node_modules-${{ hashFiles('package.json', '*.lock') }}
+        key: ${{ runner.os }}-node_modules-${{ steps.readNodeVersion.outputs.result }}-${{ hashFiles('package.json', '*.lock') }}
         path: |
           node_modules
 
