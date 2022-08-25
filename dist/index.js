@@ -32,7 +32,7 @@ async function run() {
         core.info('action logic');
     }
     catch (error) {
-        core.setFailed(error);
+        core.setFailed(error instanceof Error ? error : error.toString());
     }
 }
 run();
