@@ -48,9 +48,8 @@ jobs:
 
     - name: Update .engines.node in package.json
       run: |
-        jq --indent 2 '.engines.node = ">=${{steps.readNodeVersion.outputs.result}}"' ./package.json > ./package-new.json
-        mv ./package-new.json ./package.json
-        cat ./package.json
+        jq --indent 2 '.engines.node = ">=${{steps.readNodeVersion.outputs.result}}"' package.json > package-new.json
+        mv package-new.json package.json
 
 
     - name: node_modules cache
