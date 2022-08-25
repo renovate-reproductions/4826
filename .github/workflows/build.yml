@@ -34,8 +34,8 @@ jobs:
       id: readNodeVersion
       run: |
         USING=$( yq .runs.using ./action.yml )
-        if ! [[ "$USING" =~ ^node\d+$ ]]; then
-          echo "::error action.yml: .runs.using doesn't start with 'node': '$USING'"
+        if ! [[ "$USING" =~ ^node[0-9]+$ ]]; then
+          echo "::error::action.yml: .runs.using doesn't start with 'node': '$USING'"
           exit 1
         fi
         echo ${USING:4}
