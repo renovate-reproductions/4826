@@ -7,7 +7,7 @@ async function run(): Promise<void> {
         core.info('action logic')
 
     } catch (error) {
-        core.setFailed(error)
+        core.setFailed(error instanceof Error ? error : (error as object).toString())
     }
 }
 
