@@ -12,6 +12,7 @@ defaults:
 
 jobs:
   validate:
+    if: {{github.event_name == 'push' && github.ref == 'refs/heads/main' && env.PUSH_BACK_TOKEN}}
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -19,7 +20,6 @@ jobs:
     - name: Run current action
       env:
         PUSH_BACK_TOKEN: {{secrets.PUSH_BACK_TOKEN}}
-      if: {{github.event_name == 'push' && github.ref == 'refs/heads/main' && env.PUSH_BACK_TOKEN}}
       uses: ./
       with:
         githubToken: {{env.PUSH_BACK_TOKEN}}
