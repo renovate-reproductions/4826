@@ -71,8 +71,12 @@ jobs:
         npm run build
 
 
-    - name: Validate
-      uses: ./.github/workflows/includes/validate
+    - name: Run current action
+      env:
+        PUSH_BACK_TOKEN: {{secrets.PUSH_BACK_TOKEN}}
+      uses: ./
+      with:
+        githubToken: {{env.PUSH_BACK_TOKEN}}
 
 
     - name: Push back
