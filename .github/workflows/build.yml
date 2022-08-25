@@ -53,10 +53,8 @@ jobs:
         npm run build
 
 
-    - name: Run current action
-      uses: ./
-      with:
-        githubToken: ${{ secrets.PUSH_BACK_TOKEN }}
+    - name: Validate
+      uses: ./.github/workflows-includes/validate.yml
 
 
     - name: Push back
