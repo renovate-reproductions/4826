@@ -72,7 +72,7 @@ jobs:
 
 
     - name: Validate
-      uses: ./.github/workflows/build-validate.yml
+      uses: ./.github/workflows/includes/validate
 
 
     - name: Push back
