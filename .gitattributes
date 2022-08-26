@@ -1,3 +1,7 @@
+# Remal GitHub actions:
+dist/** -diff linguist-generated=true
+
+
 # Common:
 * text=auto eol=lf
 
