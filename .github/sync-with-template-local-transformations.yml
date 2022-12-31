@@ -7,7 +7,7 @@
         + [
             '',
             '# Remal GitHub actions:',
-            'dist/** -diff linguist-generated=true',
+            '/dist/** -diff linguist-generated=true',
             '',
         ].join('\n')
 - name: .gitignore
