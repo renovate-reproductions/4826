@@ -1,3 +1,7 @@
+repositories:
+- remal-github-actions/template-typescript
+
+transformations:
 - name: .gitattributes
   format: text
   includes:
