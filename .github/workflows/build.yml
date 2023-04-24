@@ -83,6 +83,7 @@ jobs:
     # $$$sync-with-template-modifiable: validation $$$
 
     - name: Run current action
+      id: current
       uses: ./
       with:
         dryRun: 'true'
