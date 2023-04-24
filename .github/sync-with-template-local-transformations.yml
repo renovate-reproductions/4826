@@ -27,3 +27,17 @@ transformations:
             '/coverage',
             '',
         ].join('\n')
+- name: .github/sync-with-template.yml
+  format: yaml
+  includes:
+  - .github/sync-with-template.yml
+  script: |
+    ;[
+      'tsconfig-generate-app.js',
+      'update-node-version-in-files.js',
+    ].forEach(path => {
+      if (!content.includes.includes(path)) {
+        content.includes.push(path)
+      }
+    })
+    return content
