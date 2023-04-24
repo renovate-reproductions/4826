@@ -2,9 +2,10 @@ const fs = require('fs')
 
 const encoding = 'utf8'
 
-const nodeVersion = parseInt(process.argv[1])
+const nodeVersionString = process.argv[2]
+const nodeVersion = parseInt(nodeVersionString)
 if (isNaN(nodeVersion)) {
-    throw new Error('NodeJs major version should be passed as a script parameter')
+    throw new Error(`Node.js major version should be passed as a script parameter: ${nodeVersionString}`)
 }
 
 function readJsonFile(path) {
@@ -13,7 +14,8 @@ function readJsonFile(path) {
 }
 
 function writeJsonFile(path, json) {
-    const content = JSON.stringify(json, null, 2).replaceAll(/(\r\n)|(\n\r)|(\r)/g, '\n') + '\n'
+    let content = JSON.stringify(json, null, 2) + '\n'
+    content = content.replaceAll(/(\r\n)|(\n\r)|(\r)/g, '\n')
     fs.writeFileSync(path, content, encoding)
 }
 
@@ -39,5 +41,5 @@ function writeJsonFile(path, json) {
         })
     })
 
-    writeJsonFile('package.json')
+    writeJsonFile('package.json', json)
 })()
