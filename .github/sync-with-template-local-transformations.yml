@@ -41,3 +41,28 @@ transformations:
       }
     })
     return content
+- name: Renovate
+  format: text
+  includes:
+  - .github/renovate.json5
+  replaceWithText: |
+    {
+      $schema: "https://docs.renovatebot.com/renovate-schema.json",
+      extends: ["github>remal/renovate-config:global"],
+
+      "git-submodules": {
+        enabled: false, // This is in beta for now, so let's use Dependabot to update Git submodules
+      },
+
+      js: {
+        packageRules: [
+          {
+            matchPackageNames: ['@types/node'],
+            extends: ["github>remal/renovate-config:disable-major-updates"],
+          },
+        ],
+      },
+
+      // $$$sync-with-template-modifiable: local
+      // $$$sync-with-template-modifiable-end$$$
+    }
