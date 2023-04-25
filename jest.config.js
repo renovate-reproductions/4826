@@ -20,4 +20,11 @@ module.exports = {
     ],
     errorOnDeprecated: true,
     verbose: true
+    setupFiles: [
+        '<rootDir>/jest-setup-env.js'
+    ],
+    setupFilesAfterEnv: [
+        '<rootDir>/jest-setup.js'
+    ],
+    testTimeout: 5000,
 }
