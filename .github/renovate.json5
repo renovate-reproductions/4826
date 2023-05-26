@@ -6,6 +6,10 @@
     enabled: false, // This is in beta for now, so let's use Dependabot to update Git submodules
   },
 
+  node: {
+    enabled: false,
+  },
+
   js: {
     packageRules: [
       {
